@@ -14,3 +14,12 @@ body {
   background-size: cover;
   background-attachment: fixed;
 }
+
+a {
+  color: rgb(100, 92, 92);
+  text-decoration: none;
+  font-weight: normal;
+  &:hover {
+    text-decoration: underline;
+  }
+}
