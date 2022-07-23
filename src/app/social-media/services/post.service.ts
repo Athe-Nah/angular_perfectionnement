@@ -10,7 +10,7 @@ export class PostService {
 
   constructor(private http: HttpClient){}
 
-  getPost(): Observable<Post[]> {
+  getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(`${environment.apiUrl}/posts`);
   }
 

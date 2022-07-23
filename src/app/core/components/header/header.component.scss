@@ -1,7 +1,31 @@
 ul{
   list-style: none;
+  width: 100%;
+  display: table;
+  text-align: center;
 }
 
-li{
-display: inline-block;
+ul li{
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 10px;
 }
+
+ul li a:hover{
+  text-decoration: none;
+  color: #00c2cb;
+}
+
+.header {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 5px 20px 0;
+}
+
+.header .title{
+  font-size:  x-large;
+  color: transparent;
+  background-image: linear-gradient(45deg, #553c9a, #00c2cb);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
