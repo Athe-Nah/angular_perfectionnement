@@ -4,4 +4,3 @@ export class Comment {
   comment!: string;
   createdDate!: string;
 }
-

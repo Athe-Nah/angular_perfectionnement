@@ -1,0 +1,14 @@
+mat-list-item {
+  border-bottom: thin solid rgba(224, 220, 220, 0.925);
+}
+.comments-row {
+  display: flex;
+  border-top: thin solid rgb(131, 131, 131);
+  padding-top: 10px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+mat-form-field {
+  width: 80%;
+}
