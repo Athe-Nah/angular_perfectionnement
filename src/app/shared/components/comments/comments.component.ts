@@ -16,7 +16,7 @@ import {Comment} from '../../../core/models/comment.model'
       })),
       state ( 'active', style({
         transform: 'scale(1.05)',
-        'background-color': 'rgb(201, 157, 242)',
+        'background-color': 'rgba(85, 60, 154, 0.3)',
         'z-index': 2
       })),
       transition('default => active', [
