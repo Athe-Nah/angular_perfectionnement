@@ -1,13 +1,23 @@
-import { state, trigger, style, transition, animate } from '@angular/animations';
+import { state, trigger, style, transition, animate, query, group, stagger, animateChild, useAnimation } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {Comment} from '../../../core/models/comment.model'
+import { slideAndFadeAnimation } from '../../animations/slide-and-fade.animation';
 
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss'],
   animations: [
+    trigger('list',[
+      transition(':enter', [
+        query('@listItem',[
+          stagger(100, [
+            animateChild()
+          ])
+        ])
+      ] ),
+    ]),
     trigger('listItem', [
       state ( 'default', style({
         transform: 'scale(1)',
@@ -25,6 +35,24 @@ import {Comment} from '../../../core/models/comment.model'
       transition('active => default', [
         animate('500ms ease-in-out')
       ]),
+      transition('void => *', [
+        query('.conmment-text, .comment-date', style({
+          opacity:0
+        })),
+        useAnimation(slideAndFadeAnimation),
+        group([
+          query('.comment-text', [
+            animate('500ms', style({
+              opacity:1
+            }))
+          ]),
+          query('.comment-date', [
+            animate('1000ms', style({
+              opacity:1
+            }))
+          ]),
+        ]),
+      ])
     ])
   ]
 })
@@ -49,6 +77,13 @@ export class CommentsComponent implements OnInit {
     if(this.commentCtrl.invalid){
       return;
     }
+    const maxId = Math.max(...this.comments.map(comment => comment.id));
+    this.comments.unshift({
+      id: maxId+1,
+      comment: this.commentCtrl.value,
+      createdDate: new Date().toISOString(),
+      userId:1
+    })
     this.newComment.emit(this.commentCtrl.value);
     this.commentCtrl.reset();
   }
