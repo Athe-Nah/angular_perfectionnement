@@ -39,7 +39,12 @@ import { slideAndFadeAnimation } from '../../animations/slide-and-fade.animation
         query('.conmment-text, .comment-date', style({
           opacity:0
         })),
-        useAnimation(slideAndFadeAnimation),
+        useAnimation(slideAndFadeAnimation, {
+          params: {
+              time: '500ms',
+              startColor: 'rgba(85, 60, 154, 0.4)'
+          }
+      }),
         group([
           query('.comment-text', [
             animate('500ms', style({
