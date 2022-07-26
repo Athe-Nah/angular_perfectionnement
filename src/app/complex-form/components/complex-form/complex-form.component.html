@@ -20,8 +20,20 @@
   <mat-card class="form-card">
     <mat-card-subtitle>Comment préférez-vous etre contacter ?</mat-card-subtitle>
   </mat-card>
-  <mat-card class="form-card">
+  <mat-card class="form-card" formGroupName="email">
     <mat-card-subtitle>Email</mat-card-subtitle>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>email</mat-label>
+          <input type="text" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>confirmation</mat-label>
+          <input type="text" matInput formControlName="confirm">
+        </mat-form-field>
+      </div>
+
   </mat-card>
   <mat-card class="form-card">
     <mat-card-subtitle>Téléphone</mat-card-subtitle>
