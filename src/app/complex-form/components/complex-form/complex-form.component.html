@@ -1,8 +1,21 @@
 <mat-card [formGroup]="mainForm" class="main-form">
 
   <mat-card-title> Inscription</mat-card-title>
-  <mat-card class="form-card">
+  <mat-card class="form-card" formGroupName="personalInfo" >
+
     <mat-card-subtitle>Informations personnelles</mat-card-subtitle>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>prenom</mat-label>
+        <input type="text" matInput formControlName="firstname">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>nom</mat-label>
+        <input type="text" matInput formControlName="lastname">
+      </mat-form-field>
+    </div>
+
   </mat-card>
   <mat-card class="form-card">
     <mat-card-subtitle>Comment préférez-vous etre contacter ?</mat-card-subtitle>
