@@ -192,6 +192,60 @@
         "confirmPassword": "moihsdgf"
       },
       "id": 4
+    },
+    {
+      "personalInfo": {
+        "firstname": "ddddddddddd",
+        "lastname": "dddddddddddddddd"
+      },
+      "contactPreference": "email",
+      "email": {
+        "email": "subscribe@hh.fr",
+        "confirm": "subscribe@hh.fr"
+      },
+      "phone": "",
+      "loginInfo": {
+        "username": "dddddddd",
+        "password": "ddddddddddd",
+        "confirmPassword": "ddddddddddddddd"
+      },
+      "id": 5
+    },
+    {
+      "personalInfo": {
+        "firstname": "ddddddddd",
+        "lastname": "ddddddddd"
+      },
+      "contactPreference": "email",
+      "email": {
+        "email": "subscribe@hh.fr",
+        "confirm": "subscribe@hh.fr"
+      },
+      "phone": "bbbbbbbbbb",
+      "loginInfo": {
+        "username": "subscrib",
+        "password": "cccccccccccc",
+        "confirmPassword": "cccccccccccccccccccc"
+      },
+      "id": 6
+    },
+    {
+      "personalInfo": {
+        "firstname": "ffff",
+        "lastname": "fff"
+      },
+      "contactPreference": "phone",
+      "email": {
+        "email": "",
+        "confirm": ""
+      },
+      "phone": "ffffffffff",
+      "loginInfo": {
+        "username": "ffff",
+        "password": "fff",
+        "confirmPassword": "ffffff"
+      },
+      "id": 7
     }
   ],
   "candidates": [
