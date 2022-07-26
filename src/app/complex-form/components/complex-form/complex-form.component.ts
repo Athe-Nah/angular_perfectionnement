@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { map, Observable, startWith, tap } from 'rxjs';
 
 @Component({
   selector: 'app-complex-form',
@@ -7,6 +8,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./complex-form.component.scss']
 })
 export class ComplexFormComponent implements OnInit {
+
+  showEmailCtrl$!:Observable<boolean>;
+  showPhoneCtrl$!:Observable<boolean>;
 
   mainForm!:FormGroup;
   personalInfoForm!:FormGroup;
@@ -28,6 +32,7 @@ export class ComplexFormComponent implements OnInit {
   ngOnInit(): void {
     this.initFormControls();
     this.initMainForm();
+    this.initFormObservables();
   }
 
   private initMainForm():void {
@@ -46,7 +51,7 @@ export class ComplexFormComponent implements OnInit {
       lastname: ["", Validators.required],
     });
     /* independant donc control direct, pas de formbuild*/
-    this.contactPreferenceCtrl = this.formBuilder.control('email');
+    this.contactPreferenceCtrl = this.formBuilder.control('phone');
 
     this.confirmEmailCtrl = this.formBuilder.control('');
     this.emailCtrl = this.formBuilder.control('');
@@ -67,12 +72,28 @@ export class ComplexFormComponent implements OnInit {
     })
 
   }
-
-
-
-
-  onSubmitForm(){
-
+  private initFormObservables(){
+    this.showEmailCtrl$=this.contactPreferenceCtrl.valueChanges.pipe(
+      startWith(this.contactPreferenceCtrl.value),
+      map(preference => preference ==='email'),
+    );
+      this.showPhoneCtrl$=this.contactPreferenceCtrl.valueChanges.pipe(
+        startWith(this.contactPreferenceCtrl.value),
+      map(preference => preference ==='phone'), 
+      tap(showPhoneCtrl =>{
+        if(showPhoneCtrl){
+          // add validator
+          this.phoneCtrl.addValidators([Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
+        }else{
+          //remove validator
+          this.phoneCtrl.clearValidators();
+        }
+        this.phoneCtrl.updateValueAndValidity();
+      })
+    );
   }
 
+  onSubmitForm(){
+    console.log(this.mainForm.value);
+  }
 }
