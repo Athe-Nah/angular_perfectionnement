@@ -87,7 +87,8 @@ export class ComplexFormComponent implements OnInit {
       username: ['', Validators.required],
       password: this.passwordCtrl,
       confirmPassword: this.confirmPasswordCtrl,
-    }, {validators: [confirmEqualValidator('password', 'confirmPassword')]});
+    }, {validators: [confirmEqualValidator('password', 'confirmPassword')],  
+      updateOn: 'blur'});
   }
   private initFormObservables() {
     this.showEmailCtrl$ = this.contactPreferenceCtrl.valueChanges.pipe(
@@ -103,6 +104,13 @@ export class ComplexFormComponent implements OnInit {
     this.showEmailError$ = this.emailForm.statusChanges.pipe(
       map(status => status === 'INVALID' && this.emailCtrl.value && this.confirmEmailCtrl.value)
     );
+    this.showPasswordError$ = this.loginInfoForm.statusChanges.pipe(
+      map(status =>
+         status ==='INVALID' 
+         && this.passwordCtrl.value 
+         && this.confirmPasswordCtrl.value 
+         && this.loginInfoForm.hasError('confirmEqual'))
+    )
   }
 
   private setEmailValidator(showEmailCtrl: boolean) {
