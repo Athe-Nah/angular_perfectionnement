@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { map, Observable, startWith, tap } from 'rxjs';
 import { ComplexFormService } from '../../services/complex-form.service';
+import {confirmEqualValidator} from '../../validators/confirm-equal.validator'
 
 @Component({
   selector: 'app-complex-form',
@@ -20,6 +21,8 @@ export class ComplexFormComponent implements OnInit {
 
   showEmailCtrl$!: Observable<boolean>;
   showPhoneCtrl$!: Observable<boolean>;
+  showEmailError$!:Observable<boolean>;
+  showPasswordError$!:Observable<boolean>;
 
   mainForm!: FormGroup;
   personalInfoForm!: FormGroup;
@@ -68,7 +71,10 @@ export class ComplexFormComponent implements OnInit {
     this.emailForm = this.formBuilder.group({
       email: this.emailCtrl,
       confirm: this.confirmEmailCtrl,
-    });
+    },{
+      validators: [confirmEqualValidator('email', 'confirm')],
+      updateOn: 'blur'
+  });
 
     this.phoneCtrl = this.formBuilder.control('');
     this.passwordCtrl = this.formBuilder.control('', Validators.required);
@@ -81,7 +87,7 @@ export class ComplexFormComponent implements OnInit {
       username: ['', Validators.required],
       password: this.passwordCtrl,
       confirmPassword: this.confirmPasswordCtrl,
-    });
+    }, {validators: [confirmEqualValidator('password', 'confirmPassword')]});
   }
   private initFormObservables() {
     this.showEmailCtrl$ = this.contactPreferenceCtrl.valueChanges.pipe(
@@ -93,6 +99,9 @@ export class ComplexFormComponent implements OnInit {
       startWith(this.contactPreferenceCtrl.value),
       map((preference) => preference === 'phone'),
       tap((showPhoneCtrl) => this.setPhoneValidator(showPhoneCtrl))
+    );
+    this.showEmailError$ = this.emailForm.statusChanges.pipe(
+      map(status => status === 'INVALID' && this.emailCtrl.value && this.confirmEmailCtrl.value)
     );
   }
 

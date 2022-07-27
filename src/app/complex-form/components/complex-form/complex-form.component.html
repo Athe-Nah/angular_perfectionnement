@@ -45,6 +45,7 @@
           <mat-error> {{ getFormControlErreurText(confirmEmailCtrl)}}</mat-error>
         </mat-form-field>
       </div>
+      <small class="error-text" *ngIf="showEmailError$ | async">Les deux adresses ne correspondent pas</small>
 
   </mat-card>
   <mat-card class="form-card"*ngIf="showPhoneCtrl$ | async">
