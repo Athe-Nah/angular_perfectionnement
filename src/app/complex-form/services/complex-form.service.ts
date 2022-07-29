@@ -14,7 +14,6 @@ export class ComplexFormService  {
 
   saveUserInfo(formValue:ComplexFormValue): Observable<boolean> {
     return this.http.post(`${environment.apiUrl}/users`, formValue).pipe(
-     // mapTo(true),
       map(() => true),
       delay(1000),
 

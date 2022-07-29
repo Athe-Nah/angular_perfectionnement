@@ -44,6 +44,9 @@ export class CandidateService {
   }
 
   getCandidatebyId(id: number): Observable<Candidate> {
+    if(!this.lastCandidatesLoad){
+      this.getCandidatesFromServer();
+    }
     return this.candidates$.pipe(
       map(candidates => candidates.filter(candidate => candidate.id == id)[0])
     )
