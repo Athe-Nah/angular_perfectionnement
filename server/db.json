@@ -246,7 +246,24 @@
         "confirmPassword": "ffffff"
       },
       "id": 7
-
+    },
+    {
+      "personalInfo": {
+        "firstname": "Louis",
+        "lastname": "Belaidi"
+      },
+      "contactPreference": "email",
+      "email": {
+        "email": "yidfhjiog@ffff",
+        "confirm": "yidfhjiog@ffff"
+      },
+      "phone": "0648628514",
+      "loginInfo": {
+        "username": "athenah",
+        "password": "pipi",
+        "confirmPassword": "pipi"
+      },
+      "id": 8
     }
   ],
   "candidates": [
